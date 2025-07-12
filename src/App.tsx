@@ -32,7 +32,9 @@ const PokemonGuessingGame: React.FC = () => {
   const [lastClickedSpecies, setLastClickedSpecies] = useState<{id: number, form: string | null} | null>(null);
 
   // Using proxy - no need for full URL in development
-  const API_BASE_URL = ''; // Empty string uses proxy from package.json
+  const API_BASE_URL = process.env.NODE_ENV === 'production'
+      ? 'https://rrassistant.onrender.com'
+      : ''; // Local proxy for development
 
   const startNewGame = async () => {
     setLoading(true);
